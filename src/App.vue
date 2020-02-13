@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <!--  这个标签用来承载路由映射的页面  -->
+        <router-view v-if="isRouterAlive"/>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+    export default{
+        provide(){
+            return{
+                reload:this.reload  //子组件通过inject:['reload']引入该方法，
+            }
+        },
+        data(){
+            return {
+                isRouterAlive:true,
+            }
+        },
+        methods:{
+            reload(){  //重新渲染组件
+                this.isRouterAlive = false;
+                this.$nextTick(function () {
+                    this.isRouterAlive = true;
+                })
+            }
+        }
+    }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
