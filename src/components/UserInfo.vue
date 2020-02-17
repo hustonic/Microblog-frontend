@@ -144,24 +144,20 @@
                 })
             },
             getRelation(){
-                setTimeout(()=>{
-                    if(this.user.userId){
-                        if(!this.customRelation && this.$store.state.userId!==this.user.userId){
-                            this.$api.relation.listRelation({
-                                userIdSubscriber: this.$store.state.userId,
-                                userIdPublisher: this.user.userId,
-                                offset: 0,
-                                limit: 1
-                            }).then((response)=>{
-                                this.relation=response.data.data[0];
-                            })
-                        }else{
-                            this.relation=this.customRelation;
-                        }
-                    }else{
-                        this.getRelation();
+                if (this.user.userId) {
+                    if (!this.customRelation && this.$store.state.userId !== this.user.userId) {
+                        this.$api.relation.listRelation({
+                            userIdSubscriber: this.$store.state.userId,
+                            userIdPublisher: this.user.userId,
+                            offset: 0,
+                            limit: 1
+                        }).then((response) => {
+                            this.relation = response.data.data[0];
+                        })
+                    } else {
+                        this.relation = this.customRelation;
                     }
-                }, 10);
+                }
             },
             getVerification(){
                 if (this.customVerification) {
@@ -179,6 +175,7 @@
         },
         watch: {
             user() {
+                this.getRelation();
                 this.getVerification();
             },
             customVerification(){
