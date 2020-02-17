@@ -9,9 +9,10 @@
             </el-col>
             <el-col :span="showAvatar?22:24">
                 <div style="padding: 0 0 3px">
-                    <span style="cursor: pointer;" @click="toUserPage">{{user.userName}}</span>：
+                    <span style="cursor: pointer; float: left;" @click="toUserPage">{{user.userName}}</span>
+                    <verification-sign style="float: left; margin-left: 5px" v-if="user&&user.userId" :user-id="user.userId"/>：
                     <collapsible-text :text="comment.commText"/>
-                    <el-button v-if="comment.resId" type="text" @click="showPic" style="margin-left: 5px">
+                    <el-button v-if="comment.resId" type="text" @click="showPic" style="margin-left: 5px; padding: 0">
                         <i class="el-icon-picture-outline"/> 评论配图
                     </el-button>
                 </div>
@@ -66,10 +67,11 @@
     import TimeText from "@/components/TimeText";
     import Divider from "@/components/Divider";
     import SendComment from "@/components/SendComment";
+    import VerificationSign from "@/components/VerificationSign";
 
     export default {
         name: "Comment",
-        components: {SendComment, Divider, TimeText, CollapsibleText},
+        components: {VerificationSign, SendComment, Divider, TimeText, CollapsibleText},
         props:{
             comment: {
                 type: Object,

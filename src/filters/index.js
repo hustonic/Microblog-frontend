@@ -14,7 +14,7 @@ Vue.filter('formatDate', function(time){
     let diffMinute = current.diff(date, 'minute');
     if(diffMinute < 60){
         return diffMinute+'分钟前'
-    }else if(date.day() === current.day()){
+    }else if(current.date()===date.date()&&current.month()===date.month()&&current.year()===date.year()){
         return '今天 ' + date.format('HH:mm');
     }else{
         return date.format('YYYY-MM-DD HH:mm');
@@ -53,4 +53,34 @@ Vue.filter('userSex', function(sex){
             sexStr='';
     }
     return sexStr;
+});
+
+Vue.filter('verTypeText',function(value){
+    let verificationType = api.verification.enums.verificationType;
+    switch (value) {
+        case verificationType.PERSON:
+            return '身份认证';
+        case verificationType.INTEREST:
+            return '兴趣认证';
+        case verificationType.ORGANIZATION:
+            return '组织认证';
+        default:
+            return '';
+    }
+});
+
+Vue.filter('verStateText',function(value){
+    let verificationState = api.verification.enums.verificationState;
+    switch (value) {
+        case verificationState.VERIFYING:
+            return '待审核';
+        case verificationState.FAILED:
+            return '认证失败';
+        case verificationState.CONFIRMING:
+            return '审核通过，待用户确认';
+        case verificationState.FINISHED:
+            return '认证成功';
+        default:
+            return '';
+    }
 });

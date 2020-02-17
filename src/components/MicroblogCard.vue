@@ -29,7 +29,8 @@
 
             <el-col :span="21" :offset="!this.showAvatar?3:0">
                 <el-row>
-                    <span style="font-weight: bold; cursor: pointer" @click="toUserPage">{{user.userName}}</span>
+                    <span style="font-weight: bold; cursor: pointer; float: left" @click="toUserPage">{{user.userName}}</span>
+                    <verification-sign style="float: left; margin-left: 5px" v-if="user&&user.userId" :user-id="user.userId"/>
                 </el-row>
                 <el-row>
                     <time-text :time="mblog.mblogPubTime"/>
@@ -122,10 +123,11 @@
     import CommentList from "@/components/CommentList";
     import TimeText from "@/components/TimeText";
     import ExpressionSelector from "@/components/ExpressionSelector";
+    import VerificationSign from "@/components/VerificationSign";
 
     export default {
         name: "MicroblogCard",
-        components: {ExpressionSelector, CommentList, SendMicroblogCard, CollapsibleText, TimeText},
+        components: {VerificationSign, ExpressionSelector, CommentList, SendMicroblogCard, CollapsibleText, TimeText},
         props: {
             mblog: {
                 type: Object,

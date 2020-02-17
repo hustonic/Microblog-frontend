@@ -129,7 +129,7 @@
                     this.onPublishSuccess(response.data.data);
                 }).catch((error)=>{
                     if(error.response.status===400)
-                    this.$message.fail('评论失败，'+error.response.data.message)
+                        this.$message.fail('评论失败，'+error.response.data.message)
                 })
             }
         },

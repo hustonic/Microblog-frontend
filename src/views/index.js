@@ -5,19 +5,32 @@ import ForgetEmail from './forget/email';
 import ForgetPhone from './forget/phone';
 import Microblog from './microblog';
 import MicroblogHome from './microblog/home'
+import MicroblogAll from './microblog/all'
 import MicroblogUserPage from './microblog/user-page'
 import MicroblogUserSetting from './microblog/user-setting'
-import ChangePassword from './microblog/change-password'
+import MicroblogChangePassword from './microblog/change-password'
+import MicroblogRelation from './microblog/relation'
+import MicroblogVerification from './microblog/verification'
+import Admin from './admin'
+import AdminVerification from './admin/verification'
+
 
 export {
     Login,
     Signup,
     Forget,
-        ForgetEmail,
-        ForgetPhone,
+    ForgetEmail,
+    ForgetPhone,
+
     Microblog,
-        MicroblogHome,
-        MicroblogUserPage,
-        MicroblogUserSetting,
-        ChangePassword
+    MicroblogHome,
+    MicroblogAll,
+    MicroblogUserPage,
+    MicroblogUserSetting,
+    MicroblogChangePassword,
+    MicroblogRelation,
+    MicroblogVerification,
+
+    Admin,
+    AdminVerification
 };
